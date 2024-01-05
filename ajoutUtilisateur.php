@@ -14,8 +14,9 @@
 
 
 ?>
-<div class="mx-auto">
-<form class= "w-50" action="traitement_ajout.php" method="POST">
+<div class="mx-auto w-50">
+  <h1 class="mt-3">Ajout d'un nouvel utilisateur</h1>
+<form class= "mt-5" action="traitement_ajout.php" method="POST">
   <div class="form-group">
     <label for="exampleInputEmail1">Nom</label>
     <input type="text" name="nom" class="form-control" id="nom" aria-describedby="nom" placeholder="">
@@ -29,7 +30,7 @@
     <input type="text" name="ville" class="form-control" id="ville" placeholder="">
   </div>
   
-  <button type="submit" class="btn btn-primary">Submit</button>
+  <button type="submit" class="mt-3 btn btn-primary">Submit</button>
 </form>
 </div>
 

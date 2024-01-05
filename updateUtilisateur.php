@@ -23,8 +23,10 @@ $donnees = mysqli_fetch_assoc($result);
 
 
 ?>
-<div class="mx-auto">
-<form class= "w-50" action="traitement_update.php" method="POST">
+<div class="mx-auto w-50">
+<h1 class="mt-3">Modification de l'utilisateur</h1>
+
+<form class= "mt-5" action="traitement_update.php" method="POST">
   <div class="form-group">
     <label for="exampleInputEmail1">Nom</label>
     <input type="text" name="nom" class="form-control" id="nom" aria-describedby="nom" value="<?php echo $donnees["nom"] ?>">
@@ -36,9 +38,11 @@ $donnees = mysqli_fetch_assoc($result);
   <div class="form-group">
     <label for="exampleInputPassword1">Ville</label>
     <input type="text" name="ville" class="form-control" id="ville" value="<?php echo $donnees["ville"] ?>">
+    <input type="hidden" name="hide" class="form-control" id="hide" value="<?php echo $donnees["id"] ?>">
+
   </div>
   
-  <button type="submit" class="btn btn-primary">Submit</button>
+  <button type="submit" class="mt-3 btn btn-primary">Submit</button>
 </form>
 </div>
 

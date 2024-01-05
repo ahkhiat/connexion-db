@@ -5,27 +5,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css">
 
     <title>Document</title>
 </head>
 <body>
     
+<div class="mx-auto w-75">
 <?php
 
 $connex = mysqli_connect('localhost', 'root','','librairie');
 if (!$connex) {
-    echo "<script type=text/javascript>";
-    echo "alert('La connexion à la base de données a echoué')</script>";
+    echo "La connexion à la base de données a echoué" . "<br>";
 } else {
-    echo "<script type=text/javascript>";
-    echo "alert('La connexion à la base de données a reussi')</script>";
+    echo "La connexion à la base de données a reussi" . "<br>";
     
     $requete="SELECT * FROM user";
     $result = mysqli_query($connex, $requete);
     // $nb = mysqli_num_rows($result);
     // echo 'Il y a ' . $nb . ' Utilisateurs(s).';
-
-    $donnees = mysqli_fetch_assoc($result);
 
     $nb = mysqli_num_rows($result);
 
@@ -35,18 +33,20 @@ if (!$connex) {
         echo "<h2> Lecture impossible </h2>";
 
     }else{
+        echo "<div class='mt-5'>";
         echo "<h1> Liste des utilisateurs </h1>";
-        echo "<TABLE  border=2 width=50%> <TR> <TH> id </TH><TH> Nom </TH> <TH> Prenom </TH> <TH> Ville </TH> <TH> Action </TH>";
+        echo "<TABLE border=2 width=100% class='mt-4'> <TR> <TH> id </TH><TH> Nom </TH> <TH> Prenom </TH> <TH> Ville </TH> <TH> Action </TH>";
         while ($donnees = mysqli_fetch_assoc($result)){
-            echo "<TR>";
+            echo "<TR border=1>";
             echo "<TD>".$donnees['id']. "</TD>";
             echo "<TD>".$donnees['nom']. "</TD>";
             echo "<TD>".$donnees['prenom']. "</TD>";
             echo "<TD>".$donnees['ville']. "</TD>";
-            echo '<TD><a href="updateUtilisateur.php?id='.$donnees["id"].'"><button>Modifier</button></a></TD>';
-            
+            echo '<TD><a href="updateUtilisateur.php?id='.$donnees["id"].'" class="btn btn-warning"><i class="bi bi-pencil-fill"></i></a></TD>';
+            echo '<TD><a href="deleteUtilisateur.php?id='.$donnees["id"].'" class="btn btn-danger"><i class="bi bi-trash-fill"></i></a></TD>';
+
         }
-        echo "</TABLE>";
+        echo "</TABLE></div>";
         
     }
     
@@ -55,10 +55,11 @@ if (!$connex) {
 
 ?>
 
-<div>
-<button type="button">
-<a href="ajoutUtilisateur.php" class="btn btn-outline-success">Create new user</a></button>
+    <div>
+        
+        <a class="mt-3 btn btn-secondary" href="ajoutUtilisateur.php" >Create new user</a>
 
+    </div>
 </div>
 
 

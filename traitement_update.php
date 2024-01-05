@@ -9,7 +9,7 @@
     
 <?php
 
-$id = $_GET["id"];
+$id = $_POST["hide"];
 
 $nom = $_POST["nom"];
 $prenom = $_POST["prenom"];
@@ -17,7 +17,7 @@ $ville = $_POST["ville"];
 
 $connex = mysqli_connect('localhost', 'root','','librairie');
 
-$req = "UPDATE `user` SET `nom` = '$nom, `prenom` = '$prenom', `ville` = '$ville' WHERE id = '$id'";
+$req = "UPDATE `user` SET `nom` = '$nom', `prenom` = '$prenom', `ville` = '$ville' WHERE id = '$id'";
 $result = mysqli_query($connex, $req);
 
 echo "L'utilisateur a bien été modifié";
