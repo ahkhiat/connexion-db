@@ -19,46 +19,36 @@
 
 <div class="mx-auto w-75">
 
-
 <?php
 
-$connex = mysqli_connect('localhost', 'root','','librairie', '3307');
-if (!$connex) {
-    echo "La connexion à la base de données a echoué" . "<br>";
-} else {
-    echo "La connexion à la base de données a reussi" . "<br>";
+require_once 'dbConnect.php';
     
     $requete="SELECT * FROM user";
-    $result = mysqli_query($connex, $requete);
+    $sth = $dbh->query($requete);
+    $rows = $sth->fetchAll();    
+
+
+    echo 'Il y a '.count($rows) . ' utilisateur(s).';
     
-
-    $nb = mysqli_num_rows($result);
-
-    echo 'Il y a '.$nb . ' utilisateur(s).';
     
-    if(!$result){
-        echo "<h2> Lecture impossible </h2>";
-
-    }else{
-        echo "<div class='mt-5'>";
-        echo "<h1> Liste des utilisateurs </h1>";
-        echo "<TABLE border=2 width=100% class='mt-4'> <TR> <TH> id </TH><TH> Nom </TH> <TH> Prenom </TH> <TH> Ville </TH> <TH> Action </TH>";
-        while ($donnees = mysqli_fetch_assoc($result)){
+    echo "<div class='mt-5'>";
+    echo "<h1> Liste des utilisateurs </h1>";
+    echo "<TABLE border=2 width=100% class='mt-4'> <TR> <TH> id </TH><TH> Nom </TH> <TH> Prenom </TH> <TH> Ville </TH> <TH> Action </TH>";
+        foreach ($rows as $row){
             echo "<TR border=1>";
-            echo "<TD>".$donnees['id']. "</TD>";
-            echo "<TD>".$donnees['nom']. "</TD>";
-            echo "<TD>".$donnees['prenom']. "</TD>";
-            echo "<TD>".$donnees['ville']. "</TD>";
-            echo '<TD><a href="updateUtilisateur.php?id='.$donnees["id"].'" class="btn btn-warning"><i class="bi bi-pencil-fill"></i></a></TD>';
-            echo '<TD><a onclick="return confirmation()" href="deleteUtilisateur.php?id='.$donnees["id"].'" class="btn btn-danger"><i class="bi bi-trash-fill"></i></a></TD>';
+            echo "<TD>".$row['id']. "</TD>";
+            echo "<TD>".$row['nom']. "</TD>";
+            echo "<TD>".$row['prenom']. "</TD>";
+            echo "<TD>".$row['ville']. "</TD>";
+            echo '<TD><a href="updateUtilisateur.php?id='.$row["id"].'" class="btn btn-warning"><i class="bi bi-pencil-fill"></i></a></TD>';
+            echo '<TD><a onclick="return confirmation()" href="deleteUtilisateur.php?id='.$row["id"].'" class="btn btn-danger"><i class="bi bi-trash-fill"></i></a></TD>';
 
         }
-        echo "</TABLE></div>";
+    echo "</TABLE></div>";
         
-    }
     
-    mysqli_close($connex);
-}
+    
+
 
 ?>
 
