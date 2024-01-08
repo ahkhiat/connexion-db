@@ -12,7 +12,7 @@
 
 <?php
 
-$connex = mysqli_connect('localhost', 'root','','librairie');
+$connex = mysqli_connect('localhost', 'root','','librairie', '3307');
 
 $id = $_GET["id"];
 

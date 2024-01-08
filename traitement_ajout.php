@@ -18,7 +18,7 @@ $nom = $_POST["nom"];
 $prenom = $_POST["prenom"];
 $ville = $_POST["ville"];
 
-$connex = mysqli_connect('localhost', 'root','','librairie');
+$connex = mysqli_connect('localhost', 'root','','librairie', '3307');
 
 $req = "INSERT INTO `user` (`id`, `nom`, `prenom`, `ville`) VALUES (NULL, '$nom', '$prenom', '$ville');";
 $result = mysqli_query($connex, $req);

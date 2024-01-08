@@ -19,7 +19,6 @@
 
 <div class="mx-auto w-75">
 
-
 <?php
 
 $connex = mysqli_connect('localhost', 'root','','librairie', '3307');
@@ -28,7 +27,7 @@ if (!$connex) {
 } else {
     echo "La connexion à la base de données a reussi" . "<br>";
     
-    $requete="SELECT * FROM user";
+    $requete="SELECT * FROM livre";
     $result = mysqli_query($connex, $requete);
     
 
@@ -41,16 +40,16 @@ if (!$connex) {
 
     }else{
         echo "<div class='mt-5'>";
-        echo "<h1> Liste des utilisateurs </h1>";
-        echo "<TABLE border=2 width=100% class='mt-4'> <TR> <TH> id </TH><TH> Nom </TH> <TH> Prenom </TH> <TH> Ville </TH> <TH> Action </TH>";
+        echo "<h1> Liste des livres </h1>";
+        echo "<TABLE border=2 width=100% class='mt-4'> <TR> <TH> Titre </TH><TH> Auteur </TH> <TH> Thème </TH> <TH> Prix </TH> <TH> Nbe pages </TH>";
         while ($donnees = mysqli_fetch_assoc($result)){
             echo "<TR border=1>";
-            echo "<TD>".$donnees['id']. "</TD>";
-            echo "<TD>".$donnees['nom']. "</TD>";
-            echo "<TD>".$donnees['prenom']. "</TD>";
-            echo "<TD>".$donnees['ville']. "</TD>";
-            echo '<TD><a href="updateUtilisateur.php?id='.$donnees["id"].'" class="btn btn-warning"><i class="bi bi-pencil-fill"></i></a></TD>';
-            echo '<TD><a onclick="return confirmation()" href="deleteUtilisateur.php?id='.$donnees["id"].'" class="btn btn-danger"><i class="bi bi-trash-fill"></i></a></TD>';
+            echo "<TD>".$donnees['titre_livre']. "</TD>";
+            echo "<TD>".$donnees['prenom_auteur']. "&nbsp" .$donnees['nom_auteur'].  "</TD>";
+            echo "<TD>".$donnees['theme_livre']. "</TD>";
+            echo "<TD>".$donnees['prix_vente']. "</TD>";
+            echo '<TD><a href="updateLivre.php?idLivre='.$donnees["idLivre"].'" class="btn btn-warning"><i class="bi bi-pencil-fill"></i></a></TD>';
+            echo '<TD><a onclick="return confirmation()" href="deleteLivre.php?idLivre='.$donnees["idLivre"].'" class="btn btn-danger"><i class="bi bi-trash-fill"></i></a></TD>';
 
         }
         echo "</TABLE></div>";
